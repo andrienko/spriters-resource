@@ -1,0 +1,32 @@
+{
+  "name": "spriters-resource",
+  "version": "1.0.0",
+  "description": "A tool to download all sprites from spriters-resource.com",
+  "main": "bin/spriters.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrienko/spriters-resource.git"
+  },
+  "keywords": [
+    "downloader"
+  ],
+  "author": "andrienko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrienko/spriters-resource/issues"
+  },
+  "homepage": "https://github.com/andrienko/spriters-resource#readme",
+  "bin": {
+    "spriters": "bin/spriters.js"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "download": "^5.0.2",
+    "minimist": "^1.2.0",
+    "slugify": "^1.0.2",
+    "sync-request": "^3.0.1"
+  }
+}
