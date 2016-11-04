@@ -22,7 +22,8 @@
     alias: {
       s: 'search',
       g: 'get',
-      h: 'help'
+      h: 'help',
+      m: 'md'
     }
   });
 
@@ -64,9 +65,13 @@
 
   var download_sheets = function (sheets,destination) {
     destination = destination || process.cwd();
+    if(args.md){
+      var dirname = slugify(sheets.title);
+      destination += '/' + dirname;
+      fs.mkdirSync(destination);
+    }
     var num = 0;
-
-    sheets.forEach(function (sheet) {
+    sheets.sheets.forEach(function (sheet) {
       var url = base_url + '/download/'+sheet.id+'/';
       https.get(url, function(response) {
         var ext = (/.*".*\.(.*)";/g).exec(response.headers['content-disposition'])[1];
@@ -74,7 +79,7 @@
         var file = fs.createWriteStream(filename);
         response.on("end", function() {
           num++;
-          console.log('Downloaded '+num+' of '+sheets.length);
+          console.log('Downloaded '+num+' of '+sheets.sheets.length);
           file.end();
         });
         response.pipe(file);
@@ -85,7 +90,7 @@
   if(args.search){
     search(args.search);
   } else if(args.get){
-    download_sheets(get_sheets(args.get).sheets);
+    download_sheets(get_sheets(args.get));
   } else {
     console.log("---\r\nspriters-resource.com downloader. Usage:\r\n---");
     console.log("Search for game links:\r\n    spriters --search=heroes\r\n---");

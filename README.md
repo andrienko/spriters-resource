@@ -10,7 +10,8 @@ In order to use it - type something like in your console (of course, you will ha
     spriters --get "/pc_computer/heroesofmightandmagic2/"
     
 where /pc_computer/heroesofmightandmagic2/ is an url (or a part of url) of a game page on spriters-resource website.
-All the sprites available for that url (if any) will be downloaded and saved into current working directory.
+All the sprites available for that url (if any) will be downloaded and saved into current working directory. Adding a
+`--md` parameter will also create a directory for downloaded files.
 
 You can also search for the url using following command:
 
@@ -18,4 +19,4 @@ You can also search for the url using following command:
     
 where Heroes Of Might And Magic is a game name. The search results (name - partial URL) will be outputted in console
 (if any)
-  
+ 
