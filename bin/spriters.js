@@ -10,7 +10,7 @@
     request = require('sync-request'),
     cheerio = require('cheerio'),
     slugify = require('slugify'),
-    http = require('https'),
+    https = require('https'),
     minimist = require('minimist');
 
   var getPage = function (url) {
@@ -30,12 +30,10 @@
     var url = base_url + '/search/?c=-1&o%5B%5D=g&q=';
     var $ = getPage(url + encodeURIComponent(query));
     var total = 0;
-    console.log('  - Search results:');
     $('.gameiconheadertext').each(function(){
       total++;
       console.log($(this).text()+' - ' + $(this).closest('a').attr('href'));
     });
-    console.log('    Total ' + total + ' games');
   };
 
   var get_sheets = function(url){
@@ -64,14 +62,13 @@
     }
   };
 
-
   var download_sheets = function (sheets,destination) {
     destination = destination || process.cwd();
     var num = 0;
 
     sheets.forEach(function (sheet) {
       var url = base_url + '/download/'+sheet.id+'/';
-      http.get(url, function(response) {
+      https.get(url, function(response) {
         var ext = (/.*".*\.(.*)";/g).exec(response.headers['content-disposition'])[1];
         var filename = destination + '/' + slugify(sheet.title) + '.' + ext;
         var file = fs.createWriteStream(filename);
@@ -93,7 +90,5 @@
     console.log("---\r\nspriters-resource.com downloader. Usage:\r\n---");
     console.log("Search for game links:\r\n    spriters --search=heroes\r\n---");
     console.log("Download sprites from link:\r\n    spriters --get=pc_computer/heroesofmightandmagic2");
-
   }
-
 }());
