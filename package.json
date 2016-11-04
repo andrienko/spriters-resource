@@ -11,7 +11,9 @@
     "url": "git+https://github.com/andrienko/spriters-resource.git"
   },
   "keywords": [
-    "downloader"
+    "downloader",
+    "cli",
+    "application"
   ],
   "author": "andrienko",
   "license": "MIT",
@@ -24,7 +26,6 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
-    "download": "^5.0.2",
     "minimist": "^1.2.0",
     "slugify": "^1.0.2",
     "sync-request": "^3.0.1"
